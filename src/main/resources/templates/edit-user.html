@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Kullanıcıyı Düzenle</title>
+</head>
+<body>
+
+<h1>Kullanıcıyı Düzenle</h1>
+
+<form action="#" th:action="@{/users/update/{id}(id=${user.id})}" th:object="${user}" method="post">
+    <input type="hidden" th:field="*{id}" />
+
+    <label for="username">Kullanıcı Adı</label>
+    <input type="text" id="username" name="username" th:field="*{username}" />
+
+    <label for="role">Rol</label>
+    <input type="text" id="role" name="role" th:field="*{role}" />
+<div>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" th:field="*{password}" />
+    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></div> 
+</div>
+    <button type="submit">Güncelle</button>
+</form>
+
+</body>
+</html>

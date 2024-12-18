@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+ <style>
+ 
+ 
+ 
+ 
+ body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.error {
+    color: red;
+    font-size: 0.9em;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #4cae4c;
+}
+ 
+ 
+ 
+ </style>
+</head>
+
+
+
+<body>
+
+<h1>Register</h1>
+
+<form action="#" th:action="@{/register}" th:object="${user}" method="post">
+    
+    <!-- Username -->
+    <div>
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" th:field="*{username}" />
+        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"></div>
+    </div>
+
+    <!-- Password -->
+    <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" th:field="*{password}" />
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></div>
+    </div>
+
+    <!-- Error message if username is taken -->
+    <div th:if="${error}" class="error">
+        <p th:text="${error}"></p>
+    </div>
+
+    <!-- Submit Button -->
+    <div>
+        <button type="submit">Register</button>
+    </div>
+
+</form>
+
+</body>
+</html>

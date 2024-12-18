@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Kullanıcı Listesi</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+
+<h1>Kullanıcı Listesi</h1>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Kullanıcı Adı</th>
+            <th>Rol</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Kullanıcıları döngüyle listele -->
+        <tr th:each="user, iterStat : ${users}">
+            <td th:text="${iterStat.count}"></td> <!-- Sıra numarası -->
+            <td th:text="${user.username}"></td> <!-- Kullanıcı adı -->
+            <td th:text="${user.role}"></td> <!-- Kullanıcı rolü -->
+            <td>
+                <a th:href="@{'/users/edit/' + ${user.id}}">Düzenle</a> | 
+                <a th:href="@{'/users/delete/' + ${user.id}}" onclick="return confirm('Silmek istediğinize emin misiniz?')">Sil</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
